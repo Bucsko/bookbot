@@ -1,6 +1,7 @@
 from stats import word_counter
 from stats import char_counter
 from stats import dict_sorter
+import sys
 
 line_length = 33
 analized_book = "books/frankenstein.txt"
@@ -32,7 +33,11 @@ def dict_printer(dicts):
 
 
 def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
     line_printer(" BOOKBOT ", "=")
+    analized_book = sys.argv[1]
     book_content = get_book_text(analized_book)
     print(f"Analyzing book found at {analized_book}")
     line_printer(" Word Count ", "-")
@@ -43,6 +48,7 @@ def main():
     sorted_dicts = dict_sorter(counted_chars)
     dict_printer(sorted_dicts)
     line_printer(" END ", "=")
+
 
     
       
